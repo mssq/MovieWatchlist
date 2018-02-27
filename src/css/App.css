@@ -1,0 +1,174 @@
+html {
+  min-width: 770px;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  width: 100%;
+  background-color: #222;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.App-title {
+  font-family: 'Limelight', cursive;
+  font-size: 60px;
+  margin: 15px 0px 15px 0px;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.add-movie {
+  min-width: 200px;
+  max-width: 500px;
+}
+
+.add-input {
+  display: inline-block;
+  width: 250px;
+  margin: 10px 5px 25px 0px;
+}
+
+.add-button {
+  float: right;
+  margin: 10px 0px 25px 0px;
+}
+
+.movie-list ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.movie-list li {
+  width: 600px;
+  margin-bottom: 25px;
+  margin-left: 25px;
+}
+
+.list-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-group-item {
+  margin-bottom: 10px;
+  padding: 0px;
+}
+
+.list-item {
+  display: block;
+  background-color: #E3E2DD;
+  height: 230px;
+  width: 100%;
+}
+
+.movie-pic {
+  float: left;
+  padding: 0px;
+  margin-right: 15px;
+  background-color: #282828;
+}
+
+.movie-pic img {
+  width: 150px;
+  height: 230px;
+}
+
+.movie-title-info {
+  background-color: #282828;
+  height: 83px;
+}
+
+.movie-name {
+  display: inline-block;
+}
+
+.movie-name h1 {
+  font-size: 28px;
+  color: #ffffff;
+  max-width: 380px;
+  margin: 10px 0px 10px 0px;
+}
+
+.movie-name p {
+  display: inline-block;
+  margin: 0px;
+  font-size: 24px;
+}
+
+.movie-info p {
+  display: inline-block;
+  color: #ffffff;
+  margin-right: 20px;
+}
+
+.delete-button {
+  cursor: pointer;
+  font-size: 20px;
+  width: 30px;
+  background-color: #282828;
+  color: #e74242;
+  height: 30px;
+  float: right;
+}
+
+.movie-plot {
+  height: 80px;
+}
+
+.movie-plot p {
+  margin: 10px 10px 10px 0px;
+  text-align: left;
+}
+
+.rating-info p {
+  font-family: 'Crimson Text', serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #222;
+  float: left;
+  margin-top: 20px;
+  padding-left: 8px;
+  margin-right: 60px;
+  margin-bottom: 0px;
+}
+
+.imdb-image, .rotten-image, .metacritic-image {
+  float: left;
+  margin-top: 20px;
+}
+
+.sweet-loading {
+  padding: 0px 0px 15px 0px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media(min-width: 1250px) {
+
+  .movie-list ul {
+    width: 1300px;
+  }
+  
+  .list-group {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}
