@@ -4,7 +4,7 @@ import AlertS from 'react-s-alert';
 class Alert extends Component  {
 
   showAlert() {
-    AlertS.error('Movie not found!', {
+    AlertS.error(this.props.message, {
       position: 'top-right',
       effect: 'scale',
       timeout: 2000,
