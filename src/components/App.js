@@ -17,13 +17,22 @@ class App extends Component {
 
     this.addMovie = this.addMovie.bind(this);
     this.deleteMovie = this.deleteMovie.bind(this);
+    this.state = {
+      movieDeleted: false
+    };
   }
 
   addMovie(movieName) {
+    this.setState({
+      movieDeleted: false
+    });
     this.props.fetchMovie(movieName);
   }
 
   deleteMovie(id) {
+    this.setState({
+      movieDeleted: true
+    });
     this.props.deleteMovie(id);
   }
 
@@ -46,7 +55,8 @@ class App extends Component {
         <div className="movie-list">
           <MovieList 
             movies={this.props.movies}
-            deleteMovie={this.deleteMovie} />
+            deleteMovie={this.deleteMovie}
+            deleteStatus={this.state.movieDeleted} />
         </div>
 
         <AlertS stack={{limit: 1}} />

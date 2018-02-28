@@ -89,13 +89,21 @@ class MovieList extends Component {
     )
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const { movies } = this.props.movies;
+    if (movies.length > 0 && nextProps.movies.movies.length > 0) {
+      if (movies[0].id === nextProps.movies.movies[0].id && movies.length === nextProps.movies.movies.length) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   render() {
     const { movies } = this.props.movies;
     const moviesFiltered = movies.filter(movie => movie.response !== 'False')
-
-    
-
-    if (movies.length > 0 && movies[0].response === 'False') {
+    console.log('MOVIES', movies);
+    if (movies.length > 0 && movies[0].response === 'False' && !this.props.deleteStatus) {
       return (
         <Fragment>
           <Alert />
