@@ -3,7 +3,8 @@ import { DELETE_MOVIE, FETCH_MOVIE_START,
 
 const INITIAL_STATE = {
   movies: [],
-  loading: false
+  loading: false,
+  error: 'None'
 }
 
 const movieReducer = (state=INITIAL_STATE, action) => {
@@ -31,26 +32,39 @@ const movieReducer = (state=INITIAL_STATE, action) => {
       return state;
     case RECEIVE_MOVIE:
       console.log('receive_movie', action.payload);
-      if (action.payload.Error != null) {
-        movies = {...state, movies: [{response: action.payload.Response, id: action.payload.imdbID, name: 'Movie not found!', error: action.payload.Error}, ...state.movies], loading: false };
+
+      let duplicate = false;
+      state.movies.forEach(movie => {
+        if (movie.id === action.payload.imdbID) {
+          duplicate = true;
+        }
+      });
+
+      if (!duplicate) {
+        if (action.payload.Error != null) {
+          movies = {...state, loading: false, error: 'Movie not found!' };
+        } else {
+          movies = {...state, movies: [
+            {response: action.payload.Response,
+            id: action.payload.imdbID,
+            name: action.payload.Title,
+            year: action.payload.Year,
+            image: action.payload.Poster,
+            duration: action.payload.Runtime,
+            released: action.payload.Released,
+            genre: action.payload.Genre,
+            description: action.payload.Plot,
+            imdbID: action.payload.imdbID,
+            imdbRating: action.payload.imdbRating,
+            imdbVotes: action.payload.imdbVotes,
+            rottenRating: filterRatings(action.payload, 'Rotten Tomatoes'),
+            metacriticRating: filterRatings(action.payload, 'Metacritic')},
+            ...state.movies], loading: false, error: 'None'};
+        }
       } else {
-        movies = {...state, movies: [
-          {response: action.payload.Response,
-          id: action.payload.imdbID,
-          name: action.payload.Title,
-          year: action.payload.Year,
-          image: action.payload.Poster,
-          duration: action.payload.Runtime,
-          released: action.payload.Released,
-          genre: action.payload.Genre,
-          description: action.payload.Plot,
-          imdbID: action.payload.imdbID,
-          imdbRating: action.payload.imdbRating,
-          imdbVotes: action.payload.imdbVotes,
-          rottenRating: filterRatings(action.payload, 'Rotten Tomatoes'),
-          metacriticRating: filterRatings(action.payload, 'Metacritic')},
-          ...state.movies], loading: false};
+        movies = {...state, loading: false, error: 'Film is already on the list!'};
       }
+        
       return movies;
     default:
       return state;
